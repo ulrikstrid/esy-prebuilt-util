@@ -1,0 +1,18 @@
+(executable
+ (name RunEsyPrebuiltTests)
+ (modules
+  (:standard \ EsyPrebuiltTestExePesyModules))
+ (public_name RunEsyPrebuiltTests.exe)
+ (libraries esy-prebuilt.testExe.pesy-modules)
+ (flags -open EsyPrebuiltTestExePesyModules))
+
+(library
+ (public_name esy-prebuilt.testExe.pesy-modules)
+ (name EsyPrebuiltTestExePesyModules)
+ (modules EsyPrebuiltTestExePesyModules)
+ (libraries esy-prebuilt.test))
+
+(rule
+ (with-stdout-to
+  EsyPrebuiltTestExePesyModules.re
+  (run echo "module Test = EsyPrebuiltTest;")))

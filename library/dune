@@ -1,0 +1,18 @@
+(library
+ (name EsyPrebuiltLibrary)
+ (public_name esy-prebuilt.library)
+ (modules
+  (:standard \ EsyPrebuiltLibraryPesyModules))
+ (libraries esy-prebuilt.library.pesy-modules)
+ (flags -open EsyPrebuiltLibraryPesyModules))
+
+(library
+ (public_name esy-prebuilt.library.pesy-modules)
+ (name EsyPrebuiltLibraryPesyModules)
+ (modules EsyPrebuiltLibraryPesyModules)
+ (libraries base fp fs.lib))
+
+(rule
+ (with-stdout-to
+  EsyPrebuiltLibraryPesyModules.re
+  (run echo "module Fs = Fs;\nmodule Path = Fp;\nmodule Base = Base;")))

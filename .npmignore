@@ -1,0 +1,7 @@
+_esy
+.ci
+esy.lock
+node_modules
+test
+testExe
+*.install
