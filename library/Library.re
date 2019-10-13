@@ -35,20 +35,18 @@ let path_cb = (~abs_root, ~abs_target, dest) => {
 };
 
 let file_cb = (~abs_root, ~abs_target, ~pattern, ~with_, dest) => {
-  open Base;
-
-  let replacePattern = String.Search_pattern.create(pattern);
+  let replacePattern = Base.String.Search_pattern.create(pattern);
   Fp.relativize(~source=abs_root, ~dest)
-  |> Result.map(~f=relativePath => {
+  |> Base.Result.map(~f=relativePath => {
        Fs.readBinary(dest)
-       |> Result.map(~f=str => {
-            String.Search_pattern.replace_all(
+       |> Base.Result.map(~f=str => {
+            Base.String.Search_pattern.replace_all(
               replacePattern,
               ~in_=str,
               ~with_,
             )
           })
-       |> Result.map(~f=Fs.writeBinary(Fp.join(abs_target, relativePath)))
+       |> Base.Result.map(~f=Fs.writeBinary(Fp.join(abs_target, relativePath)))
      })
   |> ignore;
 };

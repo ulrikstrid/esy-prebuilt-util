@@ -1,18 +1,15 @@
-(library
- (name EsyPrebuiltLibrary)
- (public_name esy-prebuilt.library)
- (modules
-  (:standard \ EsyPrebuiltLibraryPesyModules))
- (libraries esy-prebuilt.library.pesy-modules)
- (flags -open EsyPrebuiltLibraryPesyModules))
-
-(library
- (public_name esy-prebuilt.library.pesy-modules)
- (name EsyPrebuiltLibraryPesyModules)
- (modules EsyPrebuiltLibraryPesyModules)
- (libraries base fp fs.lib))
-
+(library (name EsyPrebuiltUtilLibrary)
+    (public_name esy-prebuilt-util.library)
+    (modules (:standard \ EsyPrebuiltUtilLibraryPesyModules))
+    (libraries esy-prebuilt-util.library.pesy-modules)
+    (flags -open EsyPrebuiltUtilLibraryPesyModules))
+(library (public_name esy-prebuilt-util.library.pesy-modules)
+    (name EsyPrebuiltUtilLibraryPesyModules)
+    (modules EsyPrebuiltUtilLibraryPesyModules)
+    (libraries base esy-prebuilt-util.fp esy-prebuilt-util.fs))
 (rule
- (with-stdout-to
-  EsyPrebuiltLibraryPesyModules.re
-  (run echo "module Fs = Fs;\nmodule Path = Fp;\nmodule Base = Base;")))
+    (with-stdout-to EsyPrebuiltUtilLibraryPesyModules.re
+        (run echo
+             "module Fp = EsyPrebuiltUtilFp.Fp;\
+            \nmodule Fs = EsyPrebuiltUtilFs.Fs;\
+            \nmodule Base = Base;")))

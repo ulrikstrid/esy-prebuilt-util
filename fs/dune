@@ -1,0 +1,12 @@
+(library (name EsyPrebuiltUtilFs) (public_name esy-prebuilt-util.fs)
+    (modules (:standard \ EsyPrebuiltUtilFsPesyModules))
+    (libraries esy-prebuilt-util.fs.pesy-modules)
+    (flags -open EsyPrebuiltUtilFsPesyModules))
+(library (public_name esy-prebuilt-util.fs.pesy-modules)
+    (name EsyPrebuiltUtilFsPesyModules)
+    (modules EsyPrebuiltUtilFsPesyModules)
+    (libraries esy-prebuilt-util.fp unix))
+(rule
+    (with-stdout-to EsyPrebuiltUtilFsPesyModules.re
+        (run echo  "module Fp = EsyPrebuiltUtilFp.Fp;\
+                  \nmodule Unix = Unix;")))

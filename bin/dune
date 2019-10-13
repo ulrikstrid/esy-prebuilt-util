@@ -1,18 +1,12 @@
-(executable
- (name EsyPrebuiltApp)
- (modules
-  (:standard \ EsyPrebuiltBinPesyModules))
- (public_name EsyPrebuiltApp.exe)
- (libraries esy-prebuilt.bin.pesy-modules)
- (flags -open EsyPrebuiltBinPesyModules))
-
-(library
- (public_name esy-prebuilt.bin.pesy-modules)
- (name EsyPrebuiltBinPesyModules)
- (modules EsyPrebuiltBinPesyModules)
- (libraries esy-prebuilt.library))
-
+(executable (name EsyPrebuiltApp)
+    (modules (:standard \ EsyPrebuiltUtilBinPesyModules))
+    (public_name EsyPrebuiltApp.exe)
+    (libraries esy-prebuilt-util.bin.pesy-modules)
+    (flags -open EsyPrebuiltUtilBinPesyModules))
+(library (public_name esy-prebuilt-util.bin.pesy-modules)
+    (name EsyPrebuiltUtilBinPesyModules)
+    (modules EsyPrebuiltUtilBinPesyModules)
+    (libraries esy-prebuilt-util.library))
 (rule
- (with-stdout-to
-  EsyPrebuiltBinPesyModules.re
-  (run echo "module Library = EsyPrebuiltLibrary.Library;")))
+    (with-stdout-to EsyPrebuiltUtilBinPesyModules.re
+        (run echo "module Library = EsyPrebuiltUtilLibrary.Library;")))

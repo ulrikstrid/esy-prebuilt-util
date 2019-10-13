@@ -1,5 +1,5 @@
 {
-  "checksum": "8955b3f9cfb80e3fc6d1a98a2a29d2bd",
+  "checksum": "4208e86c5caaa9737bf5bd37589c40fa",
   "root": "esy-prebuilt-util@link-dev:./package.json",
   "node": {
     "refmterr@3.2.2@d41d8cd9": {
@@ -47,10 +47,7 @@
       },
       "overrides": [],
       "dependencies": [
-        "ocaml@4.7.1004@d41d8cd9",
-        "@reason-native/path@github:facebookexperimental/reason-native:fp.json#399da0bdefa4311af6d3849f2277bfb52024287e@d41d8cd9",
-        "@reason-native/fs@github:facebookexperimental/reason-native:fs.json#399da0bdefa4311af6d3849f2277bfb52024287e@d41d8cd9",
-        "@opam/dune@opam:1.11.4@21d66ccd",
+        "ocaml@4.7.1004@d41d8cd9", "@opam/dune@opam:1.11.4@21d66ccd",
         "@opam/base@opam:v0.12.2@d687150c",
         "@esy-ocaml/reason@3.5.2@d41d8cd9"
       ],
@@ -81,25 +78,6 @@
       ],
       "devDependencies": []
     },
-    "@reason-native/path@github:facebookexperimental/reason-native:fp.json#399da0bdefa4311af6d3849f2277bfb52024287e@d41d8cd9": {
-      "id":
-        "@reason-native/path@github:facebookexperimental/reason-native:fp.json#399da0bdefa4311af6d3849f2277bfb52024287e@d41d8cd9",
-      "name": "@reason-native/path",
-      "version":
-        "github:facebookexperimental/reason-native:fp.json#399da0bdefa4311af6d3849f2277bfb52024287e",
-      "source": {
-        "type": "install",
-        "source": [
-          "github:facebookexperimental/reason-native:fp.json#399da0bdefa4311af6d3849f2277bfb52024287e"
-        ]
-      },
-      "overrides": [],
-      "dependencies": [
-        "ocaml@4.7.1004@d41d8cd9", "@opam/dune@opam:1.11.4@21d66ccd",
-        "@esy-ocaml/reason@3.5.2@d41d8cd9"
-      ],
-      "devDependencies": [ "ocaml@4.7.1004@d41d8cd9" ]
-    },
     "@reason-native/pastel@0.2.1@d41d8cd9": {
       "id": "@reason-native/pastel@0.2.1@d41d8cd9",
       "name": "@reason-native/pastel",
@@ -116,26 +94,6 @@
         "@esy-ocaml/reason@3.5.2@d41d8cd9"
       ],
       "devDependencies": []
-    },
-    "@reason-native/fs@github:facebookexperimental/reason-native:fs.json#399da0bdefa4311af6d3849f2277bfb52024287e@d41d8cd9": {
-      "id":
-        "@reason-native/fs@github:facebookexperimental/reason-native:fs.json#399da0bdefa4311af6d3849f2277bfb52024287e@d41d8cd9",
-      "name": "@reason-native/fs",
-      "version":
-        "github:facebookexperimental/reason-native:fs.json#399da0bdefa4311af6d3849f2277bfb52024287e",
-      "source": {
-        "type": "install",
-        "source": [
-          "github:facebookexperimental/reason-native:fs.json#399da0bdefa4311af6d3849f2277bfb52024287e"
-        ]
-      },
-      "overrides": [],
-      "dependencies": [
-        "ocaml@4.7.1004@d41d8cd9",
-        "@reason-native/path@github:facebookexperimental/reason-native:fp.json#399da0bdefa4311af6d3849f2277bfb52024287e@d41d8cd9",
-        "@opam/dune@opam:1.11.4@21d66ccd", "@esy-ocaml/reason@3.5.2@d41d8cd9"
-      ],
-      "devDependencies": [ "ocaml@4.7.1004@d41d8cd9" ]
     },
     "@reason-native/file-context-printer@0.0.3@d41d8cd9": {
       "id": "@reason-native/file-context-printer@0.0.3@d41d8cd9",
