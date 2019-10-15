@@ -1,4 +1,4 @@
-let directoryUnlikelyToAffectBuild = path =>
+let shouldSkipDir = path =>
   switch (Fp.baseName(path)) {
   | None => false
   | Some(bn) =>
@@ -18,7 +18,7 @@ let onDir = (~path_cb, ~file_cb, queryResult, cont) => {
   | Other(path, _, _) => ()
   | File(path, _) => file_cb(path)
   | Dir(path, _) =>
-    !directoryUnlikelyToAffectBuild(path)
+    !shouldSkipDir(path)
       ? {
         path_cb(path);
         cont();
@@ -36,19 +36,22 @@ let path_cb = (~abs_root, ~abs_target, dest) => {
 
 let file_cb = (~abs_root, ~abs_target, ~pattern, ~with_, dest) => {
   let replacePattern = Base.String.Search_pattern.create(pattern);
-  Fp.relativize(~source=abs_root, ~dest)
-  |> Base.Result.map(~f=relativePath => {
-       Fs.readBinary(dest)
-       |> Base.Result.map(~f=str => {
-            Base.String.Search_pattern.replace_all(
-              replacePattern,
-              ~in_=str,
-              ~with_,
-            )
-          })
-       |> Base.Result.map(~f=Fs.writeBinary(Fp.join(abs_target, relativePath)))
-     })
-  |> ignore;
+  let relativePath = Fp.relativizeExn(~source=abs_root, ~dest);
+  let outPath = Fp.join(abs_target, relativePath);
+  let perms = Fs.modeExn(dest);
+  Fs.readBinaryExn(dest)
+  |> (
+    str =>
+      {
+        Base.String.Search_pattern.replace_all(
+          replacePattern,
+          ~in_=str,
+          ~with_,
+        );
+      }
+      |> Fs.writeBinaryExn(outPath)
+  );
+  Fs.changeModeExn(perms, outPath);
 };
 
 let copy_and_replace = (~packageDir, ~replace, ~storePrefix, ~targetDir) => {
