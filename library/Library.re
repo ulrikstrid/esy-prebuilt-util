@@ -1,3 +1,10 @@
+let sevenSevenSeven =
+  Fs.{
+    owner: ReadWriteExecute,
+    group: ReadWriteExecute,
+    other: ReadWriteExecute,
+  };
+
 let shouldSkipDir = path =>
   switch (Fp.baseName(path)) {
   | None => false
@@ -51,7 +58,8 @@ let file_cb = (~abs_root, ~abs_target, ~pattern, ~with_, dest) => {
       }
       |> Fs.writeBinaryExn(outPath)
   );
-  Fs.changeModeExn(perms, outPath);
+  // TODO: Every file should not have this perm
+  Fs.changeModeExn(sevenSevenSeven, outPath);
 };
 
 let copy_and_replace = (~packageDir, ~replace, ~storePrefix, ~targetDir) => {
